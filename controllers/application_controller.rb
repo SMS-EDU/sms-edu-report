@@ -1,5 +1,4 @@
 require 'sinatra'
-# require 'sinatra/base'
 require 'config_env'
 require 'rack/ssl-enforcer'
 require 'httparty'
@@ -14,7 +13,7 @@ configure :development, :test do
   ConfigEnv.path_to_config(absolute_path)
 end
 
-# Controller Class
+# Controller Class - Go to bottom for list of routes
 class ApplicationController < Sinatra::Base
   enable :logging
 
@@ -37,7 +36,11 @@ class ApplicationController < Sinatra::Base
   process_user_data = lambda do
   end
 
+  callback_gmail = lambda do
+  end
+
   ['/', '/api/v1/?'].each { |path| get path, &api_get_root }
   get '/api/v1/post_user_data/?', &post_user_data
   get '/api/v1/process_user_data/?', &process_user_data
+  get '/oauth2callback_gmail/?', &callback_gmail
 end
