@@ -1,0 +1,13 @@
+This is an example for the file config_env.rb in this folder.
+Replace ... with random keys which will be used for encryption.
+To generate these keys, you can run `rake keys_for_config_env` from the terminal
+
+config_env :production do
+  set 'DB_KEY', '...'
+  set 'MSG_KEY', '...'
+end
+
+config_env :development, :test do
+  set 'DB_KEY', '...'
+  set 'MSG_KEY', '...'
+end
