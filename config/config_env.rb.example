@@ -5,9 +5,13 @@ To generate these keys, you can run `rake keys_for_config_env` from the terminal
 config_env :production do
   set 'DB_KEY', '...'
   set 'MSG_KEY', '...'
+  set 'CLIENT_ID', 'GOOGLE_DEVELOPER_CLIENT_ID'
+  set 'CLIENT_SECRET', 'GOOGLE_DEVELOPER_CLIENT_SECRET'
 end
 
 config_env :development, :test do
   set 'DB_KEY', '...'
   set 'MSG_KEY', '...'
+  set 'CLIENT_ID', 'GOOGLE_DEVELOPER_CLIENT_ID'
+  set 'CLIENT_SECRET', 'GOOGLE_DEVELOPER_CLIENT_SECRET'
 end
