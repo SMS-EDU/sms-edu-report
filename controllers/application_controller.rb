@@ -37,10 +37,13 @@ class ApplicationController < Sinatra::Base
   end
 
   callback_gmail = lambda do
+    access_token = CallbackGmail.new(params, request).call
+    email = GoogleTeacherEmail.new(access_token).call
+    "#{email}"
   end
 
   ['/', '/api/v1/?'].each { |path| get path, &api_get_root }
   get '/api/v1/post_user_data/?', &post_user_data
   get '/api/v1/process_user_data/?', &process_user_data
-  get '/oauth2callback_gmail/?', &callback_gmail
+  get '/oauth2callback/?', &callback_gmail
 end
