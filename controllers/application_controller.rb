@@ -61,7 +61,13 @@ class ApplicationController < Sinatra::Base
   end
 
   post_uploader = lambda do
-    SaveUploadersToDB.new(params).call
+    begin
+      SaveUploadersToDB.new(params).call
+      201
+    rescue => e
+      logger.error("Fail: #{e}")
+      halt 400
+    end
   end
 
   put_uploader = lambda do
