@@ -3,7 +3,7 @@ Dir.glob('./{models,controllers,services,config}/*.rb')
   require file
 end
 
-# require 'sinatra/activerecord/rake'
+require 'sinatra/activerecord/rake'
 require 'config_env/rake_tasks'
 require 'rake/testtask'
 
