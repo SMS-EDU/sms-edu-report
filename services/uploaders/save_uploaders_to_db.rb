@@ -28,9 +28,9 @@ class SaveUploadersToDB
   def save_uploader_to_db(uploader_hash, uploader, nonce, salt)
     uploader.encoded_nonce = base_64_encode(nonce)
     uploader.encoded_salt = base_64_encode(salt)
-    uploader.encrypted_email = encrypted_email(uploader_hash['id'], nonce)
-    uploader.encrypted_school = encrypted_school(uploader_hash['userid'], nonce)
-    uploader.hashed_password = hashed_password(uploader_hash['id'], salt)
+    uploader.encrypted_email = encrypted_email(uploader_hash['email'], nonce)
+    uploader.encrypted_school = encrypted_school(uploader_hash['school'], nonce)
+    uploader.hashed_password = hashed_password(uploader_hash['email'], salt)
     uploader.save
   end
 
