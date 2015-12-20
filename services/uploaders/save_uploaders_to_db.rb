@@ -12,10 +12,7 @@ class SaveUploadersToDB
   end
 
   def call
-    puts @uploader
-    # hashes = @values.map { |value| @keys.zip(value).to_h }
     @uploader_hashes.each do |uploader_hash|
-      # puts nonce
       nonce = self.nonce
       salt = self.salt
       uploader = Uploader.new
