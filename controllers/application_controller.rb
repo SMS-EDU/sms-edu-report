@@ -16,6 +16,7 @@ end
 # Controller Class - Go to bottom for list of routes
 class ApplicationController < Sinatra::Base
   enable :logging
+  use Rack::MethodOverride
 
   configure :production do
     use Rack::SslEnforcer
@@ -30,10 +31,16 @@ class ApplicationController < Sinatra::Base
     'Welcome to api/v1'
   end
 
-  post_user_data = lambda do
+  post_student_data = lambda do
   end
 
-  process_user_data = lambda do
+  put_student_data = lambda do
+  end
+
+  delete_student_data = lambda do
+  end
+
+  post_process_data = lambda do
   end
 
   callback_gmail = lambda do
@@ -43,7 +50,9 @@ class ApplicationController < Sinatra::Base
   end
 
   ['/', '/api/v1/?'].each { |path| get path, &api_get_root }
-  get '/api/v1/post_user_data/?', &post_user_data
-  get '/api/v1/process_user_data/?', &process_user_data
+  post '/api/v1/student_data/?', &post_student_data
+  put '/api/v1/student_data/?', &put_student_data
+  delete '/api/v1/student_data/?', &delete_student_data
+  post '/api/v1/process_data/?', &post_process_data
   get '/oauth2callback/?', &callback_gmail
 end
