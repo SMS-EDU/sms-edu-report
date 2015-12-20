@@ -6,6 +6,7 @@ require 'jwt'
 require 'json'
 require 'rbnacl/libsodium'
 require 'csv'
+require_relative '../services/init.rb'
 
 configure :development, :test do
   require 'hirb'
@@ -60,6 +61,7 @@ class ApplicationController < Sinatra::Base
   end
 
   post_uploader = lambda do
+    SaveUploadersToDB.new(params).call
   end
 
   put_uploader = lambda do
