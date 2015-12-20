@@ -5,6 +5,7 @@ require 'httparty'
 require 'jwt'
 require 'json'
 require 'rbnacl/libsodium'
+require 'csv'
 
 configure :development, :test do
   require 'hirb'
@@ -31,13 +32,40 @@ class ApplicationController < Sinatra::Base
     'Welcome to api/v1'
   end
 
-  post_student_data = lambda do
+  get_student_records = lambda do
   end
 
-  put_student_data = lambda do
+  post_student_records = lambda do
   end
 
-  delete_student_data = lambda do
+  put_student_records = lambda do
+  end
+
+  delete_student_records = lambda do
+  end
+
+  get_guardian = lambda do
+  end
+
+  post_guardian = lambda do
+  end
+
+  put_guardian = lambda do
+  end
+
+  delete_guardian = lambda do
+  end
+
+  get_uploader = lambda do
+  end
+
+  post_uploader = lambda do
+  end
+
+  put_uploader = lambda do
+  end
+
+  delete_uploader = lambda do
   end
 
   post_process_data = lambda do
@@ -49,10 +77,27 @@ class ApplicationController < Sinatra::Base
     "#{email}"
   end
 
+  # Root route
   ['/', '/api/v1/?'].each { |path| get path, &api_get_root }
-  post '/api/v1/student_data/?', &post_student_data
-  put '/api/v1/student_data/?', &put_student_data
-  delete '/api/v1/student_data/?', &delete_student_data
+
+  # Student Records core routes
+  get '/api/v1/student_record/?', &get_student_records
+  post '/api/v1/student_record/?', &post_student_records
+  put '/api/v1/student_record/?', &put_student_records
+  delete '/api/v1/student_record/?', &delete_student_records
+
+  # Guardian routes
+  get '/api/v1/guardian/?', &get_guardian
+  post '/api/v1/guardian/?', &post_guardian
+  put '/api/v1/guardian/?', &put_guardian
+  delete '/api/v1/guardian/?', &delete_guardian
+
+  # Uploader routes
+  get '/api/v1/uploader/?', &get_uploader
+  post '/api/v1/uploader/?', &post_uploader
+  put '/api/v1/uploader/?', &put_uploader
+  delete '/api/v1/uploader/?', &delete_uploader
+
   post '/api/v1/process_data/?', &post_process_data
   get '/oauth2callback/?', &callback_gmail
 end
