@@ -58,6 +58,12 @@ class ApplicationController < Sinatra::Base
   end
 
   get_uploader = lambda do
+    begin
+      UploaderFromDB.new(params).call
+    rescue => e
+      logger.error("Fail: #{e}")
+      halt 500
+    end
   end
 
   post_uploader = lambda do

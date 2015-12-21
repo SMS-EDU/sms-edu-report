@@ -1,6 +1,6 @@
 require_relative '../login_security/methods_for_encryption'
 
-# Service Object to save an uploader
+# Service Object to save uploaders
 class SaveUploadersToDB
   include MethodsForEncryption
 
