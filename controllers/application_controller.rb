@@ -46,9 +46,22 @@ class ApplicationController < Sinatra::Base
   end
 
   get_guardian = lambda do
+    begin
+      GuardianFromDB.new(params).call
+    rescue => e
+      logger.error("Fail: #{e}")
+      halt 500
+    end
   end
 
   post_guardian = lambda do
+    begin
+      SaveGuardiansToDB.new(params).call
+      201
+    rescue => e
+      logger.error("Fail: #{e}")
+      halt 400
+    end
   end
 
   put_guardian = lambda do

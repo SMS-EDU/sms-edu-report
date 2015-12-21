@@ -22,8 +22,6 @@ class SaveUploadersToDB
     end
   end
 
-  # private
-
   def save_uploader_to_db(uploader_hash, uploader, nonce, salt)
     uploader.encrypted_email = encrypted_email(uploader_hash['email'], nonce)
     uploader.encrypted_school = encrypted_school(uploader_hash['school'], nonce)

@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20151220005114) do
     t.text     "encrypted_phone_number"
     t.text     "encrypted_guardian_name"
     t.text     "encrypted_student_name"
-    t.text     "encrypted_nonce"
+    t.text     "encoded_nonce"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
   end
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20151220005114) do
     t.text     "encrypted_uploader_email"
     t.text     "record_type"
     t.text     "encrypted_record_json"
-    t.text     "encrypted_nonce"
+    t.text     "encoded_nonce"
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
