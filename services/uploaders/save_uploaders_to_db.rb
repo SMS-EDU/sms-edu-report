@@ -16,6 +16,8 @@ class SaveUploadersToDB
       nonce = self.nonce
       salt = self.salt
       uploader = Uploader.new
+      uploader.encoded_nonce = base_64_encode(nonce)
+      uploader.encoded_salt = base_64_encode(salt)
       save_uploader_to_db(uploader_hash, uploader, nonce, salt)
     end
   end
@@ -23,16 +25,19 @@ class SaveUploadersToDB
   # private
 
   def save_uploader_to_db(uploader_hash, uploader, nonce, salt)
-    uploader.encoded_nonce = base_64_encode(nonce)
-    uploader.encoded_salt = base_64_encode(salt)
     uploader.encrypted_email = encrypted_email(uploader_hash['email'], nonce)
     uploader.encrypted_school = encrypted_school(uploader_hash['school'], nonce)
+    uploader.encrypted_name = encrypted_name(uploader_hash['name'], nonce)
     uploader.hashed_password = hashed_password(uploader_hash['email'], salt)
     uploader.save
   end
 
   def nonce
     RbNaCl::Random.random_bytes(secret_box.nonce_bytes)
+  end
+
+  def encrypted_name(name, nonce)
+    base_64_encode(secret_box.encrypt(nonce, name))
   end
 
   def encrypted_email(email, nonce)

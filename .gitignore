@@ -1,5 +1,6 @@
 config/*_env.rb
 db/*.db
+test.csv
 
 *.gem
 *.rbc

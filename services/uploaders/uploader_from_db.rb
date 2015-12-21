@@ -13,9 +13,7 @@ class UploaderFromDB
     return nil if uploaders.empty?
     uploaders.map do |u|
       nonce = base_64_decode(u.encoded_nonce)
-      email = secret_box.decrypt(nonce, base_64_decode(u.encrypted_email))
-      school = secret_box.decrypt(nonce, base_64_decode(u.encrypted_school))
-      { email: email, school: school }.to_json
+      uploader_to_json(u, nonce)
     end
   end
 
@@ -26,5 +24,12 @@ class UploaderFromDB
       results << u if base_64_encode(encrypted_email) == u.encrypted_email
     end
     results
+  end
+
+  def uploader_to_json(u, nonce)
+    email = secret_box.decrypt(nonce, base_64_decode(u.encrypted_email))
+    school = secret_box.decrypt(nonce, base_64_decode(u.encrypted_school))
+    name = secret_box.decrypt(nonce, base_64_decode(u.encrypted_name))
+    { email: email, school: school, name: name }.to_json
   end
 end

@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20151220005114) do
   create_table "uploaders", force: :cascade do |t|
     t.text     "encrypted_email"
     t.text     "encrypted_school"
+    t.text     "encrypted_name"
     t.text     "hashed_password"
     t.text     "encoded_nonce"
     t.text     "encoded_salt"
