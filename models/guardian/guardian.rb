@@ -1,4 +1,4 @@
-require_relative '../methods_for_encryption'
+require_relative '../../lib/methods_for_encryption'
 
 # Getter/setter methods for Guardian Class
 module GuardianMethods
