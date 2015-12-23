@@ -32,6 +32,11 @@ namespace :local do
 
   desc 'Set up local database'
   task :local_db do
+    system 'rake db:migrate'
+  end
+
+  desc 'Set up local database'
+  task :my_local_db do
     system 'rm db/dev.db db/schema.rb'
     system 'rake db:migrate'
   end
