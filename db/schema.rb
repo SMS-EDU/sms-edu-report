@@ -25,10 +25,10 @@ ActiveRecord::Schema.define(version: 20151220005114) do
   create_table "records", force: :cascade do |t|
     t.text     "encrypted_uploader_email"
     t.text     "record_type"
-    t.text     "encrypted_record_json"
     t.text     "encoded_nonce"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.text     "encrypted_record_json",    limit: 4294967295
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
   end
 
   create_table "uploaders", force: :cascade do |t|

@@ -5,14 +5,14 @@ class UploaderFromDB
   end
 
   def call
-    uploaders = find_uploader
+    uploaders = find_uploaders
     return nil if uploaders.empty?
     uploaders.map do |u|
       { email: u.email, school: u.school, name: u.name }.to_json
     end
   end
 
-  def find_uploader(results = [])
+  def find_uploaders(results = [])
     Uploader.all.each do |u|
       results << u if u.email == @email
     end
