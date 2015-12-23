@@ -36,9 +36,9 @@ class ApplicationController < Sinatra::Base
   get_student_records = lambda do
     begin
       RecordFromDB.new(params).call
-    # rescue => e
-    #   logger.error("Fail: #{e}")
-    #   halt 500
+    rescue => e
+      logger.error("Fail: #{e}")
+      halt 500
     end
   end
 
