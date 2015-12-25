@@ -3,7 +3,7 @@ class SaveRecordsToDB
   def initialize(params)
     @uploader_email = params[:uploader_email]
     @record_type = params[:record_type]
-    doc = CSV.read(params['csv'][:tempfile])
+    doc = CSV.read(params['file'][:tempfile])
     keys = doc[0]
     values = JSON.parse("#{doc[1..-1]}")
     @record_json = values.map { |value| keys.zip(value).to_h.to_json }.to_s
