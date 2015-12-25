@@ -1,7 +1,7 @@
 # Service Object to save uploaders
 class SaveUploadersToDB
   def initialize(params)
-    doc = CSV.read(params['csv'][:tempfile])
+    doc = CSV.read(params['file'][:tempfile])
     keys = doc[0]
     values = JSON.parse("#{doc[1..-1]}")
     @uploader_hashes = values.map { |value| keys.zip(value).to_h }
