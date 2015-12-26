@@ -13,14 +13,14 @@ Afterwards, `rackup` should get you going & the API should be up at localhost:92
 > (/test_files/ contains sample files)
 
 - Save several uploaders
-  - `http -f POST localhost:9292/api/v1/uploader csv@~/{absoulute_path_to_folder}/test_files/test_u.csv`
+  - `http -f POST localhost:9292/api/v1/uploader file@~/{absoulute_path_to_folder}/test_files/test_u.csv`
 - Retrieve an uploader's info
   - `http localhost:9292/api/v1/uploader?email=taka@gmail.com`
 - Save several guardians
-  - `http -f POST localhost:9292/api/v1/guardian csv@~/{absoulute_path_to_folder}/test_files/test_g.csv`
+  - `http -f POST localhost:9292/api/v1/guardian file@~/{absoulute_path_to_folder}/test_files/test_g.csv`
 - Retrieve a guardian's info
   - `http localhost:9292/api/v1/guardian?phone_number=000738836292`
 - Save a record
-  - `http -f POST localhost:9292/api/v1/student_record csv@~/{absoulute_path_to_folder}/test_files/test_r.csv uploader_email='taka@gmail.com' record_type='report_card'`
+  - `http -f POST localhost:9292/api/v1/student_record file@~/{absoulute_path_to_folder}/test_files/test_r.csv uploader_email='taka@gmail.com' record_type='report_card'`
 - Retrieve a record
   - `http localhost:9292/api/v1/student_record?uploader_email=taka@gmail.com`
