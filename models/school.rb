@@ -12,4 +12,6 @@ class School < ActiveRecord::Base
   has_many :students
   has_many :records, through: :students
   include SchoolMethods
+
+  validates :encrypted_name, presence: true
 end

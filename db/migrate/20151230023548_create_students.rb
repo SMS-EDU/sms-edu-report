@@ -5,7 +5,7 @@ class CreateStudents < ActiveRecord::Migration
       student.belongs_to :school, index: true
       student.belongs_to :guardian, index: true
       student.text :encrypted_first_name, :encrypted_last_name,
-                   :encoded_nonce
+                   :encrypted_student_school_id, :encoded_nonce
       student.timestamps null: false
     end
   end

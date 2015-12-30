@@ -10,4 +10,7 @@ class Guardian < ActiveRecord::Base
   has_many :students
   has_many :records, through: :students
   include GuardianMethods
+
+  validates :encrypted_name, presence: true
+  validates :encrypted_phone_number, presence: true
 end

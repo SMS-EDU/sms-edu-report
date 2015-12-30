@@ -4,9 +4,19 @@ require_relative '../../lib/methods_for_encryption'
 module GuardianMethods
   include MethodsForEncryption
 
-  def phone_number=(phone_number)
+  def name=(name)
     nonce = RbNaCl::Random.random_bytes(secret_box.nonce_bytes)
     self.encoded_nonce = base_64_encode(nonce)
+    name = secret_box.encrypt(nonce, name)
+    self.encrypted_name = base_64_encode(name)
+  end
+
+  def name
+    name = base_64_decode(encrypted_name)
+    secret_box.decrypt(nonce, name)
+  end
+
+  def phone_number=(phone_number)
     phone_number = secret_box.encrypt(nonce, phone_number)
     self.encrypted_phone_number = base_64_encode(phone_number)
   end
@@ -16,24 +26,14 @@ module GuardianMethods
     secret_box.decrypt(nonce, phone_number)
   end
 
-  def guardian_name=(guardian_name)
-    guardian_name = secret_box.encrypt(nonce, guardian_name)
-    self.encrypted_guardian_name = base_64_encode(guardian_name)
+  def email=(email)
+    email = secret_box.encrypt(nonce, email)
+    self.encrypted_email = base_64_encode(email)
   end
 
-  def guardian_name
-    guardian_name = base_64_decode(encrypted_guardian_name)
-    secret_box.decrypt(nonce, guardian_name)
-  end
-
-  def student_name=(student_name)
-    student_name = secret_box.encrypt(nonce, student_name)
-    self.encrypted_student_name = base_64_encode(student_name)
-  end
-
-  def student_name
-    student_name = base_64_decode(encrypted_student_name)
-    secret_box.decrypt(nonce, student_name)
+  def email
+    email = base_64_decode(encrypted_email)
+    secret_box.decrypt(nonce, email)
   end
 
   def nonce

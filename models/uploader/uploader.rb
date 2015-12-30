@@ -16,24 +16,34 @@ module UploaderMethods
     secret_box.decrypt(nonce, email)
   end
 
-  def school=(school)
-    school = secret_box.encrypt(nonce, school)
-    self.encrypted_school = base_64_encode(school)
+  def last_name=(last_name)
+    last_name = secret_box.encrypt(nonce, last_name)
+    self.encrypted_last_name = base_64_encode(last_name)
   end
 
-  def school
-    school = base_64_decode(encrypted_school)
-    secret_box.decrypt(nonce, school)
+  def last_name
+    last_name = base_64_decode(encrypted_last_name)
+    secret_box.decrypt(nonce, last_name)
   end
 
-  def name=(name)
-    name = secret_box.encrypt(nonce, name)
-    self.encrypted_name = base_64_encode(name)
+  def first_name=(first_name)
+    first_name = secret_box.encrypt(nonce, first_name)
+    self.encrypted_first_name = base_64_encode(first_name)
   end
 
-  def name
-    name = base_64_decode(encrypted_name)
-    secret_box.decrypt(nonce, name)
+  def first_name
+    first_name = base_64_decode(encrypted_first_name)
+    secret_box.decrypt(nonce, first_name)
+  end
+
+  def phone_number=(phone_number)
+    phone_number = secret_box.encrypt(nonce, phone_number)
+    self.encrypted_phone_number = base_64_encode(phone_number)
+  end
+
+  def phone_number
+    phone_number = base_64_decode(encrypted_phone_number)
+    secret_box.decrypt(nonce, phone_number)
   end
 
   def make_password

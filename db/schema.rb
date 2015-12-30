@@ -52,9 +52,10 @@ ActiveRecord::Schema.define(version: 20151230023605) do
     t.integer  "guardian_id"
     t.text     "encrypted_first_name"
     t.text     "encrypted_last_name"
+    t.text     "encrypted_student_school_id"
     t.text     "encoded_nonce"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "students", ["guardian_id"], name: "index_students_on_guardian_id"
