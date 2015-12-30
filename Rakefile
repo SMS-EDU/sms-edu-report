@@ -41,6 +41,16 @@ namespace :local do
     system 'rake db:migrate'
   end
 
+  desc 'Dump DB'
+  task :dump_db do
+    system 'rm db/dev.db db/schema.rb'
+  end
+
+  desc 'Dump Migrations'
+  task :dump_migration do
+    system 'rm -rf db/migrate/'
+  end
+
   desc 'Set up local'
   task local_and_running: [:bundle_install, :local_db] do
   end
