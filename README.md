@@ -24,3 +24,9 @@ Afterwards, `rackup` should get you going & the API should be up at localhost:92
   - `http -f POST localhost:9292/api/v1/student_record file@~/{absoulute_path_to_folder}/test_files/test_r.csv uploader_email='taka@gmail.com' record_type='report_card'`
 - Retrieve a record
   - `http localhost:9292/api/v1/student_record?uploader_email=taka@gmail.com`
+
+### TODO
+
+- Send sms via Plivo API
+- Email notification for failed sms delivery
+- Validate/verify report types before sending to gaurdians
