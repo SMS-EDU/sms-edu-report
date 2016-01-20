@@ -1,4 +1,4 @@
-# Service Object to retrieve an uploader
+# Service Object to retrieve a school
 class SchoolsFromDB
   def initialize(params)
     @name = params[:name]

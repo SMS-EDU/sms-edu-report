@@ -1,21 +1,26 @@
 # Service Object to retrieve a record
 class RecordFromDB
   def initialize(params)
-    @uploader_email = params[:uploader_email]
+    @uploader_id = uploader_id(params[:uploader_email])
   end
 
   def call
     records = find_records
     return nil if records.empty?
     records.map do |r|
-      { uploader_email: r.uploader_email, record_type: r.record_type,
-        record_json: r.record_json }.to_json
+      { id: r.id, session: r.session, term: r.term, record_type: r.record_type,
+        student_class: r.student_class, uploader_id: r.uploader_id,
+        sent: r.sent?, record_json: r.record_json }.to_json
     end
+  end
+
+  def uploader_id(uploader_email)
+    Uploader.all.each { |u| return u.id if u.email == uploader_email }
   end
 
   def find_records(results = [])
     Record.all.each do |r|
-      results << r if r.uploader_email == @uploader_email
+      results << r if r.uploader_id == @uploader_id
     end
     results
   end

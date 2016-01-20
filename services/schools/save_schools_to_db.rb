@@ -1,4 +1,4 @@
-# Service Object to save uploaders
+# Service Object to save schools
 class SaveSchoolsToDB
   def initialize(params)
     doc = CSV.read(params['file'][:tempfile])

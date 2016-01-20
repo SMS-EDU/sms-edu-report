@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20151230023605) do
   end
 
   create_table "records", force: :cascade do |t|
-    t.integer  "student_id"
     t.integer  "uploader_id"
     t.text     "record_type"
     t.text     "encrypted_session"
@@ -31,11 +30,11 @@ ActiveRecord::Schema.define(version: 20151230023605) do
     t.text     "encrypted_class"
     t.text     "encrypted_record_json"
     t.text     "encoded_nonce"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.text     "sent?",                 default: "f"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
-  add_index "records", ["student_id"], name: "index_records_on_student_id"
   add_index "records", ["uploader_id"], name: "index_records_on_uploader_id"
 
   create_table "schools", force: :cascade do |t|

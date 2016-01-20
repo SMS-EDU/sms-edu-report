@@ -1,4 +1,4 @@
-# Service Object to retrieve an uploader
+# Service Object to retrieve a guardian
 class GuardianFromDB
   def initialize(params)
     @phone_number = params[:phone_number]

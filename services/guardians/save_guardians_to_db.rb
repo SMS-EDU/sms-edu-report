@@ -1,4 +1,4 @@
-# Service Object to save uploaders
+# Service Object to save guardians
 class SaveGuardiansToDB
   def initialize(params)
     doc = CSV.read(params['file'][:tempfile])

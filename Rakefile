@@ -51,6 +51,18 @@ namespace :local do
     system 'rm -rf db/migrate/'
   end
 
+  desc 'Run post requests'
+  task :default_post_requests do
+    go_to_route = 'http -f -v POST localhost:9292/api/v1/'
+    params = 'record_type==grades session==2011/2012 term==1st '\
+             'student_class==JSS3 uploader_email==taka@gmail.com'
+    system "#{go_to_route}students file@test_files/test_st.csv"
+    system "#{go_to_route}schools file@test_files/test_sch.csv"
+    system "#{go_to_route}guardians file@test_files/test_g.csv"
+    system "#{go_to_route}uploaders file@test_files/test_u.csv"
+    system "#{go_to_route}/records file@test_files/test_r.csv #{params}"
+  end
+
   desc 'Set up local'
   task local_and_running: [:bundle_install, :local_db] do
   end
