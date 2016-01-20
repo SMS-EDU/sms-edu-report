@@ -8,7 +8,9 @@ class UploaderFromDB
     uploaders = find_uploaders
     return nil if uploaders.empty?
     uploaders.map do |u|
-      { email: u.email, school: u.school, name: u.name }.to_json
+      { id: u.id, email: u.email, phone_number: u.phone_number,
+        last_name: u.last_name, first_name: u.first_name,
+        school_id: u.school_id }.to_json
     end
   end
 

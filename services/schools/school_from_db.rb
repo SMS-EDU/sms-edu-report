@@ -8,7 +8,8 @@ class SchoolsFromDB
     schools = find_schools
     return nil if schools.empty?
     schools.map do |s|
-      { name: s.name, phone_number: s.phone_number, email: s.email }.to_json
+      { id: s.id, name: s.name, phone_number: s.phone_number,
+        email: s.email }.to_json
     end
   end
 

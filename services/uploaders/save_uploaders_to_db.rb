@@ -11,8 +11,10 @@ class SaveUploadersToDB
     @uploader_hashes.each do |uploader_hash|
       uploader = Uploader.new
       uploader.email = uploader_hash['email']
-      uploader.school = uploader_hash['school']
-      uploader.name = uploader_hash['name']
+      uploader.last_name = uploader_hash['last_name']
+      uploader.first_name = uploader_hash['first_name']
+      uploader.phone_number = uploader_hash['phone_number']
+      uploader.school_id = uploader_hash['school_id']
       uploader.make_password
       uploader.save
     end
