@@ -8,8 +8,7 @@ class GuardianFromDB
     guardians = find_guardians
     return nil if guardians.empty?
     guardians.map do |g|
-      { phone_number: g.phone_number, guardian_name: g.guardian_name,
-        student_name: g.student_name }.to_json
+      { name: g.name, phone_number: g.phone_number, email: g.email }.to_json
     end
   end
 
