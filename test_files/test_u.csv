@@ -1,3 +1,4 @@
-email,school,name
-taka@gmail.com,NTHU,Takei George
-tinko@gmail.com,NCTU,Steve Austin
+email,last_name,first_name,phone_number,school_id
+taka@gmail.com,Takei,George,080572527823243,1
+tinko@gmail.com,Austin,Steve,32839320404,2
+talama@gmail.com,Alabi,Oza,34332839320404,1

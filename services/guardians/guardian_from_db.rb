@@ -1,4 +1,4 @@
-# Service Object to retrieve an uploader
+# Service Object to retrieve a guardian
 class GuardianFromDB
   def initialize(params)
     @phone_number = params[:phone_number]
@@ -8,8 +8,8 @@ class GuardianFromDB
     guardians = find_guardians
     return nil if guardians.empty?
     guardians.map do |g|
-      { phone_number: g.phone_number, guardian_name: g.guardian_name,
-        student_name: g.student_name }.to_json
+      { id: g.id, name: g.name, phone_number: g.phone_number,
+        email: g.email }.to_json
     end
   end
 

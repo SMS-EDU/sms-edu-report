@@ -2,7 +2,9 @@
 class CreateUploaders < ActiveRecord::Migration
   def change
     create_table :uploaders do |uploader|
-      uploader.text :encrypted_email, :encrypted_school, :encrypted_name,
+      uploader.belongs_to :school, index: true
+      uploader.text :encrypted_first_name, :encrypted_last_name,
+                    :encrypted_email, :encrypted_phone_number,
                     :hashed_password, :encoded_nonce, :encoded_salt
       uploader.timestamps null: false
     end

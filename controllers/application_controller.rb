@@ -33,18 +33,18 @@ class ApplicationController < Sinatra::Base
     'Welcome to api/v1'
   end
 
-  get_student_records = lambda do
+  get_schools = lambda do
     begin
-      RecordFromDB.new(params).call
+      SchoolsFromDB.new(params).call
     rescue => e
       logger.error("Fail: #{e}")
       halt 500
     end
   end
 
-  post_student_records = lambda do
+  post_schools = lambda do
     begin
-      SaveRecordsToDB.new(params).call
+      SaveSchoolsToDB.new(params).call
       201
     rescue => e
       logger.error("Fail: #{e}")
@@ -52,13 +52,13 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  put_student_records = lambda do
+  put_schools = lambda do
   end
 
-  delete_student_records = lambda do
+  delete_schools = lambda do
   end
 
-  get_guardian = lambda do
+  get_guardians = lambda do
     begin
       GuardianFromDB.new(params).call
     rescue => e
@@ -67,7 +67,7 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  post_guardian = lambda do
+  post_guardians = lambda do
     begin
       SaveGuardiansToDB.new(params).call
       201
@@ -77,13 +77,13 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  put_guardian = lambda do
+  put_guardians = lambda do
   end
 
-  delete_guardian = lambda do
+  delete_guardians = lambda do
   end
 
-  get_uploader = lambda do
+  get_uploaders = lambda do
     begin
       UploaderFromDB.new(params).call
     rescue => e
@@ -92,7 +92,7 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  post_uploader = lambda do
+  post_uploaders = lambda do
     begin
       SaveUploadersToDB.new(params).call
       201
@@ -102,10 +102,60 @@ class ApplicationController < Sinatra::Base
     end
   end
 
-  put_uploader = lambda do
+  put_uploaders = lambda do
   end
 
-  delete_uploader = lambda do
+  delete_uploaders = lambda do
+  end
+
+  get_students = lambda do
+    begin
+      StudentFromDB.new(params).call
+    rescue => e
+      logger.error("Fail: #{e}")
+      halt 500
+    end
+  end
+
+  post_students = lambda do
+    begin
+      SaveStudentsToDB.new(params).call
+      201
+    rescue => e
+      logger.error("Fail: #{e}")
+      halt 400
+    end
+  end
+
+  put_students = lambda do
+  end
+
+  delete_students = lambda do
+  end
+
+  get_records = lambda do
+    begin
+      RecordFromDB.new(params).call
+    rescue => e
+      logger.error("Fail: #{e}")
+      halt 500
+    end
+  end
+
+  post_records = lambda do
+    begin
+      SaveRecordsToDB.new(params).call
+      201
+    rescue => e
+      logger.error("Fail: #{e}")
+      halt 400
+    end
+  end
+
+  put_records = lambda do
+  end
+
+  delete_records = lambda do
   end
 
   post_process_data = lambda do
@@ -120,23 +170,35 @@ class ApplicationController < Sinatra::Base
   # Root route
   ['/', '/api/v1/?'].each { |path| get path, &api_get_root }
 
-  # Student Records core routes
-  get '/api/v1/student_record/?', &get_student_records
-  post '/api/v1/student_record/?', &post_student_records
-  put '/api/v1/student_record/?', &put_student_records
-  delete '/api/v1/student_record/?', &delete_student_records
+  # School routes
+  get '/api/v1/schools/?', &get_schools
+  post '/api/v1/schools/?', &post_schools
+  put '/api/v1/schools/?', &put_schools
+  delete '/api/v1/schools/?', &delete_schools
 
   # Guardian routes
-  get '/api/v1/guardian/?', &get_guardian
-  post '/api/v1/guardian/?', &post_guardian
-  put '/api/v1/guardian/?', &put_guardian
-  delete '/api/v1/guardian/?', &delete_guardian
+  get '/api/v1/guardians/?', &get_guardians
+  post '/api/v1/guardians/?', &post_guardians
+  put '/api/v1/guardians/?', &put_guardians
+  delete '/api/v1/guardians/?', &delete_guardians
 
   # Uploader routes
-  get '/api/v1/uploader/?', &get_uploader
-  post '/api/v1/uploader/?', &post_uploader
-  put '/api/v1/uploader/?', &put_uploader
-  delete '/api/v1/uploader/?', &delete_uploader
+  get '/api/v1/uploaders/?', &get_uploaders
+  post '/api/v1/uploaders/?', &post_uploaders
+  put '/api/v1/uploaders/?', &put_uploaders
+  delete '/api/v1/uploaders/?', &delete_uploaders
+
+  # Student routes
+  get '/api/v1/students/?', &get_students
+  post '/api/v1/students/?', &post_students
+  put '/api/v1/students/?', &put_students
+  delete '/api/v1/students/?', &delete_students
+
+  # Student Records core routes
+  get '/api/v1/records/?', &get_records
+  post '/api/v1/records/?', &post_records
+  put '/api/v1/records/?', &put_records
+  delete '/api/v1/records/?', &delete_records
 
   post '/api/v1/process_data/?', &post_process_data
   get '/oauth2callback/?', &callback_gmail
